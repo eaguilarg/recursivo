@@ -99,6 +99,7 @@ public void imprimePermutaciones(int n, String s, int limite ){
         System.out.println(s); 
     else
     for(int i=1;i<=n;i++){
+        if(!s.contains(i+""))
         imprimePermutaciones(n,s+(i+""),limite+1);
     }
         
