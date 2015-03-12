@@ -1,5 +1,8 @@
 
 package recursividad;
+
+import java.util.Random;
+
 public class Recursividad  {
     
     public Recursividad(){
@@ -105,6 +108,58 @@ public void imprimePermutaciones(int n, String s, int limite ){
         
 }
 
+public void laberinto(int fila, int columna, int x,int y, int movimientos ){
+    int[][] laberinto=new int[fila][columna];
+    Random rand=new Random();
+    //rand.nextInt(n-1);
+   // rand.nextInt(m-1);
+   //paso base
+    if(!contains(laberinto,0))
+        imprimeMatriz(laberinto);
+    else
+        laberinto[x][y]=movimientos;
+    laberinto(fila,columna,x,y,movimientos+1);
+    
+    
+    //movimientos
+   int derecha=y+1, izquierda=y-1, arriba=x-1, abajo=x+1;
+   
+    
+    if(x==0 || laberinto [arriba][y]!=0)//no puedes ir arriba 
+        //(no arriba=derecha, no derecha=abajo no abajo= izquierda no izquierda=arriba)
+        if(x==0 || laberinto[][])
+         
+    
+}
+public int derecha(int x, int y){
+      return (y+1);
+}
+    
+
+public boolean contains (int [][]matriz, int n){
+    boolean resp=true;
+    int i=0,j=0;
+    int Nofilas=matriz.length, Nocolumnas=matriz[i].length;
+    while( i<= Nofilas && matriz[i][j]!=n ){
+        j++;
+        if(j==Nocolumnas)
+            j=0;
+            i++;
+}
+    if(i>Nofilas)
+        resp=false;
+    return resp;
+}
+
+public void imprimeMatriz(int [][] m){
+    for(int i=0;i<m.length;i++){
+        for(int j=0;i<m.length;j++)
+            System.out.print(m[i][j]+" ");
+    }
+    System.out.println();
+}
+
+    
 
 
         
@@ -116,24 +171,24 @@ public static void main (String[] args){
     
     /*resp=p.cuenta(a, 0);
     System.out.println(resp);
-    
     String resps;
     
     System.out.println("inciso a");
     resps=p.ImprimeA(ar,0);
         System.out.println(resps);
-    
     System.out.println("inciso b");    
     resps=p.ImprimeB(ar, 0);
-        System.out.println(resps);
-        */
-   resp= p.BusquedaBinaria(ar, 7, 0, ar.length);
-    System.out.println(resp);
+    System.out.println(resps);
+       */
+   //resp= p.BusquedaBinaria(ar, 7, 0, ar.length);
+    //System.out.println(resp);
     
-    p.imprimePermutaciones(3, "", 0);
+  // System.out.println("Impresion permutacion de n numero");
+  //  p.imprimePermutaciones(2, "", 0);
 
 
     
    
+
 }
 }
