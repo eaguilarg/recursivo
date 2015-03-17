@@ -111,33 +111,30 @@ public void imprimePermutaciones(int n, String s, int limite ){
 
 public void laberinto(int fila, int columna, int x,int y, int movimientos ){
     int[][] laberinto=new int[fila][columna];
-   // Random rand=new Random();
-    //rand.nextInt(n-1);
-   // rand.nextInt(m-1);
+  
    //paso base
     if(!contains(laberinto,0))
         imprimeMatriz(laberinto);
     else
         laberinto[x][y]=movimientos;
-    //laberinto(fila,columna,x,y,movimientos+1);
-    
-    
+      
     //movimientos
    int derecha=y+1, izquierda=y-1, arriba=x-1, abajo=x+1;
    
     //casos bordes
     if(laberinto [x][izquierda]!=0 || y==0)//restriccion izquierda 
         laberinto(fila,columna,arriba,y,movimientos+1);//arriba
-    if(laberinto[arriba][y]!=0 || x==0)//restriccion arriba
-        laberinto(fila,columna,x,derecha,movimientos+1);//derecha
-    if(laberinto[x][derecha]!=0 || y==columna)//restriccion derecha
-        laberinto(fila,columna,abajo,y,movimientos+1);//abajo
-    else
-        laberinto(fila,columna,x,izquierda,movimientos+1);//izquierda
-    
-}
-
-    
+            
+        if(laberinto[arriba][y]!=0 || x==0)//restriccion arriba
+           laberinto(fila,columna,x,derecha,movimientos+1);//derecha
+           
+           if(laberinto[x][derecha]!=0 || y==columna)//restriccion derecha
+                laberinto(fila,columna,abajo,y,movimientos+1);//abajo
+                
+            else
+                laberinto(fila,columna,x,izquierda,movimientos+1);//izquierda
+               
+    }
 
 public boolean contains (int [][]matriz, int n){
     boolean resp=true;
@@ -154,13 +151,61 @@ public boolean contains (int [][]matriz, int n){
     return resp;
 }
 
-public void imprimeMatriz(int [][] m){
-    for(int i=0;i<m.length;i++){
-        for(int j=0;i<m.length;j++)
-            System.out.print(m[i][j]+" ");
-    }
-    System.out.println();
+
+public void imprimeMatriz(int [][] matriz){
+for (int x=0; x < matriz.length; x++) {
+  System.out.print("|");
+  for (int y=0; y < matriz[x].length; y++) {
+    System.out.print (matriz[x][y]);
+    if (y!=matriz[x].length-1) System.out.print("\t");
+  }
+ System.out.println("|");
 }
+}
+
+
+//algoritmo ruta
+public boolean ruta(int [][]matrix, int l,int a,int l1,int a1, int k){
+int i,j;
+//int [][] matrix=new int[0][0];
+
+if(matrixIsEmpty(matrix,l,a)){
+	for(i=0;i<l;i++){
+		for(j=0;j<a;j++)
+			System.out.print(matrix[i][j]+" ");
+System.out.println(" ");
+}
+   return true;
+}
+
+    if(l1<0  || a1<0)
+    return false;
+    
+    if(l1>=l || a1>=a)
+    return false;
+    
+    if(matrix[l1][a1]!=0)
+    return false;
+    matrix[l1][a1]=k;
+    
+    if(ruta(matrix,l,a,l1-1,a1,k+1))
+    return true;
+    if(ruta(matrix,l,a,l1,a1+1,k+1))
+    return true;
+    if(ruta(matrix,l,a,l1+1,a1,k+1))
+    return true;
+    if(ruta(matrix,l,a,l1,a1-1,k+1))
+    return true;
+
+    matrix[l1][a1]=0;
+    return false;
+    }
+
+
+
+
+
+
         
 public static void main (String[] args){
     Recursividad p = new Recursividad();
@@ -193,11 +238,14 @@ public static void main (String[] args){
     n=lectura.nextInt();
     System.out.println("Ingresa numero de columnas de tu tablero: ");
     m=lectura.nextInt();
+    int [][] c=new int [n][m];
+    p.imprimeMatriz(c);
     
     x=rand.nextInt(n-1);
     y=rand.nextInt(m-1);
-    
-    p.laberinto(n, m, x, y, 0);
+  
+      
+    p.laberinto(n, m, x, y, 1);
     
     
    
