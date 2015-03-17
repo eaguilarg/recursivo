@@ -2,6 +2,7 @@
 package recursividad;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Recursividad  {
     
@@ -110,7 +111,7 @@ public void imprimePermutaciones(int n, String s, int limite ){
 
 public void laberinto(int fila, int columna, int x,int y, int movimientos ){
     int[][] laberinto=new int[fila][columna];
-    Random rand=new Random();
+   // Random rand=new Random();
     //rand.nextInt(n-1);
    // rand.nextInt(m-1);
    //paso base
@@ -118,22 +119,24 @@ public void laberinto(int fila, int columna, int x,int y, int movimientos ){
         imprimeMatriz(laberinto);
     else
         laberinto[x][y]=movimientos;
-    laberinto(fila,columna,x,y,movimientos+1);
+    //laberinto(fila,columna,x,y,movimientos+1);
     
     
     //movimientos
    int derecha=y+1, izquierda=y-1, arriba=x-1, abajo=x+1;
    
-    
-    if(x==0 || laberinto [arriba][y]!=0)//no puedes ir arriba 
-        //(no arriba=derecha, no derecha=abajo no abajo= izquierda no izquierda=arriba)
-        if(x==0 || laberinto[][])
-         
+    //casos bordes
+    if(laberinto [x][izquierda]!=0 || y==0)//restriccion izquierda 
+        laberinto(fila,columna,arriba,y,movimientos+1);//arriba
+    if(laberinto[arriba][y]!=0 || x==0)//restriccion arriba
+        laberinto(fila,columna,x,derecha,movimientos+1);//derecha
+    if(laberinto[x][derecha]!=0 || y==columna)//restriccion derecha
+        laberinto(fila,columna,abajo,y,movimientos+1);//abajo
+    else
+        laberinto(fila,columna,x,izquierda,movimientos+1);//izquierda
     
 }
-public int derecha(int x, int y){
-      return (y+1);
-}
+
     
 
 public boolean contains (int [][]matriz, int n){
@@ -158,10 +161,6 @@ public void imprimeMatriz(int [][] m){
     }
     System.out.println();
 }
-
-    
-
-
         
 public static void main (String[] args){
     Recursividad p = new Recursividad();
@@ -186,7 +185,20 @@ public static void main (String[] args){
   // System.out.println("Impresion permutacion de n numero");
   //  p.imprimePermutaciones(2, "", 0);
 
-
+//juego laberinto
+    int n,m,x,y;
+    Random rand=new Random();
+    Scanner lectura=new Scanner(System.in);
+    System.out.println("Ingresa numero de filas de tu tablero: ");
+    n=lectura.nextInt();
+    System.out.println("Ingresa numero de columnas de tu tablero: ");
+    m=lectura.nextInt();
+    
+    x=rand.nextInt(n-1);
+    y=rand.nextInt(m-1);
+    
+    p.laberinto(n, m, x, y, 0);
+    
     
    
 
