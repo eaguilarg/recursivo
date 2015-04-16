@@ -7,19 +7,7 @@ import java.util.Scanner;
 public class Recursividad  {
     
     public Recursividad(){
-        
     }
-
-/*public int suma(int a[], int n){
-    if(n==0)
-        return 0;
-    else
-        return n + suma(int a[], int (n-1));
-}    */
-  
-
-
-
 
 //metodo recursivo que dado un arreglo de objetos cuente y regrese cuantas posiciones no nulas tiene
 
@@ -52,13 +40,10 @@ public int cuenta(Object A[], int i){
 
 //a)
 public String ImprimeA(int a[], int i){
-       
-    if(i==a.length)
+     if(i==a.length)
        return " ";
     else
         return a[i]+ImprimeA(a,i+1);      
- 
-   
 }
 
 //b)
@@ -67,8 +52,7 @@ public String ImprimeB(int a[], int i){
        return " ";
     else
         return ImprimeB(a,i+1)+a[i];      
- 
-}
+ }
 
 public int BusquedaBinaria(int a[],int elemento, int i, int j){
     int n=j-i, m=0;
@@ -88,8 +72,7 @@ public int BusquedaBinaria(int a[],int elemento, int i, int j){
         else
             return BusquedaBinaria(a, elemento,m,n);
     }
-      
-}
+ }
 
 //metodo dado un int n imprima todas las permutaciones de los primeros n enteros
 /*ej
@@ -106,7 +89,6 @@ public void imprimePermutaciones(int n, String s, int limite ){
         if(!s.contains(i+""))
         imprimePermutaciones(n,s+(i+""),limite+1);
     }
-        
 }
 
 public void laberinto(int fila, int columna, int x,int y, int movimientos ){
@@ -163,7 +145,6 @@ for (int x=0; x < matriz.length; x++) {
 }
 }
 
-
 //algoritmo ruta
 public boolean ruta(int [][]matrix, int l,int a,int l1,int a1, int k){
 int i,j;
@@ -177,7 +158,6 @@ System.out.println(" ");
 }
    return true;
 }
-
     if(l1<0  || a1<0)
     return false;
     
@@ -200,13 +180,6 @@ System.out.println(" ");
     matrix[l1][a1]=0;
     return false;
     }
-
-
-
-
-
-
-        
 public static void main (String[] args){
     Recursividad p = new Recursividad();
     Object a[]={1, null, 2,null,4,2};
